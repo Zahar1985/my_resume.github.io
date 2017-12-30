@@ -1,0 +1,36 @@
+﻿<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<style>
+h1,p {text-align: center;}
+img {
+    display: block;
+    margin: auto;
+}
+</style>
+<h1>Динамика загрязнения атмосферного воздуха в Украине (1999-2012 рр.)</h1>
+<p><i>За данными Центральной геофизической обсерватории Украины</i></p>
+<SCRIPT>
+var img0 = new Image( 1056, 816 );
+img0.src = "images/myanimation.gif";
+var i = 0;
+var animation = true;
+var nbImg = 1; // змініть на кількість зображень, які ви маєте
+function animate() {
+if (animation) {
+document.images[0].src = eval("img" + i ).src;
+}
+i++;
+if (i == nbImg) i=0;
+junk = setTimeout("animate();", 500); // in milliseconds
+}
+</SCRIPT>
+</HEAD>
+<BODY onLoad="animate();">
+<form>
+<input type="button" onClick="animation = true;" value="Почати">
+<input type="button" onClick="animation = false;" value="Зупинити">
+</form>
+<IMG src="" width=1056 height=816>
+</BODY>
+</HTML>

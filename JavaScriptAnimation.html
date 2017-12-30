@@ -1,0 +1,56 @@
+﻿<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<style>
+h1,p { text-align: center; }
+img {
+    display: block;
+    margin: auto;
+}
+</style>
+<h1>Динамика загрязнения атмосферного воздуха в Украине (1999-2012 рр.)</h1>
+<p><i>За данными Центральной геофизической обсерватории Украины</i></p>
+<SCRIPT>
+var img0 = new Image( 1056, 816 );
+img0.src = "images/jpg1.jpg";
+var img1 = new Image( 1056, 816 );
+img1.src = "images/jpg2.jpg";
+var img2 = new Image( 1056, 816 );
+img2.src = "images/jpg3.jpg";
+var img3 = new Image( 1056, 816 );
+img3.src = "images/jpg4.jpg";
+var img4 = new Image( 1056, 816 );
+img4.src = "images/jpg5.jpg";
+var img5 = new Image( 1056, 816 );
+img5.src = "images/jpg6.jpg";
+var img6 = new Image( 1056, 816 );
+img6.src = "images/jpg7.jpg";
+var img7 = new Image( 1056, 816 );
+img7.src = "images/jpg8.jpg";
+var img8 = new Image( 1056, 816 );
+img8.src = "images/jpg9.jpg";
+var img9 = new Image( 1056, 816 );
+img9.src = "images/jpg10.jpg";
+var img10 = new Image( 1056, 816 );
+img10.src = "images/jpg11.jpg";
+var i = 0;
+var animation = true;
+var nbImg = 11; // змініть на кількість зображень, які ви маєте
+function animate() {
+if (animation) {
+document.images[0].src = eval("img" + i ).src;
+}
+i++;
+if (i == nbImg) i=0;
+junk = setTimeout("animate();", 500); // in milliseconds
+}
+</SCRIPT>
+</HEAD>
+<BODY onLoad="animate();">
+<form>
+<input type="button" onClick="animation = true;" value="Почати">
+<input type="button" onClick="animation = false;" value="Зупинити">
+</form>
+<IMG src="" width=1056 height=816>
+</BODY>
+</HTML>

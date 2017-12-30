@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Create an ArcGIS.com 2D Mash-up</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<style>
+ 
+  html, body, #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+  .center {
+    text-align: center;
+    border: 3px solid blue;
+}
+#viewDiv {
+    display: block;
+    margin: 0 auto;
+	}
+ 
+</style>
+<link rel="stylesheet" href="https://js.arcgis.com/4.5/esri/css/main.css">
+<script src="https://js.arcgis.com/4.5/"></script>
+<script>
+require([
+  "esri/Map",
+  "esri/views/MapView",
+  "esri/Graphic",
+ "esri/geometry/Point",
+ "esri/symbols/PictureMarkerSymbol",
+ "esri/widgets/Locate",
+  "dojo/domReady!"
+], function(Map, MapView, Graphic, Point, PictureMarkerSymbol, Locate
+){
+  var map = new Map({
+    basemap: "streets"
+  });
+  var view = new MapView({
+    container: "viewDiv",  // Reference to the scene div created in step 5
+    map: map,  // Reference to the map object created before the scene
+    extent: { // автокаст як новий Extent()
+ xmin: 2432016,
+ymin: 6060706,
+xmax: 2814122,
+ymax: 6303017,
+spatialReference: 102100
+ }
+
+  });
+var locateBtn = new Locate({
+        view: view
+      });
+
+      // Add the locate widget to the top left corner of the view
+      view.ui.add(locateBtn, {
+        position: "top-left"
+      });
+  // Створіть точковий маркер символу
+var pictureSymbol = new PictureMarkerSymbol({
+ url: "images/Skiresort.png",
+width: "30px",
+height: "30px"
+ });
+
+
+var infoTemplate = {
+ title: "{Name}",
+content: [{
+type: "fields",
+ fieldInfos: [{
+ fieldName: "Name"
+ }, {
+ fieldName: "Phone"
+ }, {
+ fieldName: "URL"
+ }]
+}]
+ };
+ // Створіть точкову геометрію (це місцеположення гірськолижного курорту Буковель)
+var Resort = function(Resort_Name,POINT_X,POINT_Y,Resort_Phone,Resort_Url){
+ var point = new Point({
+x: POINT_X,
+y: POINT_Y, 
+spatialReference: { wkid: 102100 }
+ });
+ 
+ // Створіть графіку та додайте до неї символ та геометрію
+ var pointGraphic = new Graphic({
+ symbol: pictureSymbol,
+geometry: point,
+attributes: {Name: Resort_Name, Phone: Resort_Phone, URL: "<a target='_blank' href="+Resort_Url+"/> Resort's URL </a>"},
+popupTemplate: infoTemplate,
+ });
+ // Додати графіку
+ view.graphics.add(pointGraphic);
+ }
+
+Resort("Буковель",2717954.42331,6165817.17415,"+380 343 395 546","https://bukovel.com/en/");
+Resort("Драгобрат",2696681.26862,6147494.01648,"+380 031 328 128","http://dragobrat.ws/ru/");
+Resort("Подобовець",2592419.43354,6219928.25801,"+380 342 112 549","http://podobovets.com/");
+Resort("Пилипець",2593332.25337,6217787.531,"+380 031 465 158","http://guide.karpaty.ua/ru/places/pylypez");
+Resort("Воєводино",2520540.43834,6217652.70012,"+380 342 145 541","http://voevodyno.com/activities/descent/");
+Resort("Синяк",2544262.62183,6203574.65136,"+380 341 655 540","http://www.doroga.ua/SkiingResort/Syniak");
+Resort("Красія",2481556.35266,6209128.99102,"+380 343 655 542","http://krasiya.com.ua/");
+Resort("Вишка",2523935.68281,6264466.46012,"+380 344 213 543","http://guide.karpaty.ua/ru/places/krasiia-ghirskolizhnii-kurort-v-sieli-vishka");
+Resort("Плай",2772311.73066,6103677.86346,"+380 348 972 558","http://play-karpaty.com/");
+Resort("Тростян",2603473.45898,6250581.26881,"+380 342 111 789","http://www.skiresort.info/ski-resort/trostyan-mountain/");
+Resort("Ільз",2618969.1321,6261348.7757,"+380 343 595 516","http://www.skiresort.info/ski-resort/ilz/");
+Resort("Захар Беркут",2597762.7691,6250648.9462,"+380 341 395 239","http://www.zaharberkut.net/ru/");
+Resort("Погар",2588523.25137,6264296.99122,"+380 349 697 941","http://www.skiresort.info/ski-resort/mt-pohar-pogar/");
+
+});
+</script>
+</head>
+<body>
+<div class="center"><h2>Українські гірськолижні курорти з ArcGIS.com</h2></div>
+  <div id="viewDiv" style="width:900px; height:600px; border:1px solid#000;"></div>
+</body>
+</html>

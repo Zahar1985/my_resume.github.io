@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, userscalable=no">
+
+<meta http-equiv="X-UA-Compatible" content="IE=7,IE=9">
+<title>Ukrainian Sky Resorts</title>
+<link rel="stylesheet" href="http://js.arcgis.com/3.21/dijit/themes/claro/claro.css">
+<link rel="stylesheet" href="http://js.arcgis.com/3.21/esri/css/esri.css">
+<link rel="stylesheet" type="text/css" href="layout.css">
+<script type="text/javascript">
+var djConfig = {parseOnLoad: true};
+</script>
+<script src="http://js.arcgis.com/3.21/"></script>
+<script type="text/javascript" src="layout.js"></script>
+<script>
+require(["dijit/layout/ContentPane", "dijit/layout/BorderContainer"]);
+</script>
+<script>
+var loading;
+require(["dojo/on",
+         "dojo/dom",
+         "dojo/ready",
+         "dojo/domReady!"
+        ], function(on, dom, ready){
+
+  function init() {
+    loading = dom.byId("loadingImg");  
+    on(map, "update-start", showLoading);
+    on(map, "update-end", hideLoading);
+  }
+      function showLoading() {
+    esri.show(loading);
+    map.disableMapNavigation();
+    map.hideZoomSlider();
+  }
+  function hideLoading(error) {
+    esri.hide(loading);
+    map.enableMapNavigation();
+    map.showZoomSlider();
+  }
+  ready(init);
+});
+</script>
+</head>
+<body class="claro">
+<div id="content" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline',gutters:true" style="width: 100%; height: 100%; margin: 0;">
+<div id="header" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
+Українські гірськолижні комплекси: Карта з ArcGIS.com та ArcGIS Server
+<img src="images/VIU-75-Logo.jpg" width = "200" align="left">
+<div id="subheader">Карта місцерозташування українських гірськолижних комплексів</div>
+</div>
+<div id="leftPane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'left'">
+<br><br>
+<strong>Layer List:</strong>
+<span id="layer_list"></span>
+<!--This is the left section-->
+</div>
+<div id="mapDiv" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">
+<img id="loadingImg" src="images/loading.gif" style="position:absolute; right:512px; top:256px; z-index:100;" />
+<!--This is the map section-->
+</div>
+<div id="rightPane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'right'">
+<!--This is the right section-->
+<h3> Legend </h3>
+<br>
+<div id="legendDiv"></div>
+<!--This is the right section-->
+</div>
+<div id="footer" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'">
+<!--This is the bottom section-->
+<div id="scalebar" style="position:absolute;left:50%;top:20%"></div>
+<!--This is the footer section-->
+</div>
+</div>
+</body>
+</html>
