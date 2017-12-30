@@ -1,0 +1,66 @@
+﻿html, body {
+ height: 100%; width: 100%;
+ margin: 0; padding: 0;
+}
+body{
+ background-color:white; overflow:hidden;
+ font-family: "Kimberley", sans-serif
+}
+#header {
+ -moz-border-radius: 5px;
+ margin:2px;
+ padding-top: 4px;
+ padding-right: 15px;
+ background-color:#FFFFFF;
+ color:#421b14;
+ font-size:14pt;
+ text-align:center;
+ font-weight:bold;
+ border: solid 2px #79663b;
+ height:60px;
+ background-image:url('images/banner.jpg');
+}
+#subheader {
+ font-size:small;
+ color: #666666;
+ text-align:center;
+ padding-right:20px;
+}
+#footer {
+ margin:2px;
+ padding: 2px;
+ background-color:white; color:#2a3537;
+ border: solid 2px #79663b;
+ font-size:10pt; text-align:center;
+ height: 40px;
+}
+#rightPane{
+ margin:3px;
+ padding:10px;
+ background-color:white;
+ color:#421b14;
+ border: solid 2px #79663b;
+ width:15%;
+ }
+#leftPane{
+ margin: 5px;
+ padding:2px;
+ background-color:white;
+ color:#3f3f3f;
+ border: solid 2px #224a54;
+ width:14%;
+}
+#map {
+ margin:5px;
+ border:solid 4px #79663b;
+}
+.shadow{
+ /* slight shadow effect added for browsers that support this functionality */
+ -o-border-radius: 6px;
+ -moz-border-radius: 6px;
+ -webkit-border-radius: 6px;
+ box-shadow: 8px 16px #323834;
+ -webkit-box-shadow: 8px 16px #323834;
+ -moz-box-shadow: 8px 16px #323834;
+ -o-box-shadow: 8px 16px #323834;
+}
