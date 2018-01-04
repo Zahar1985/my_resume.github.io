@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+ <head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+<meta charset="utf-8">
+<title>Google Maps JavaScript API v3 Example: Ukrainian Ski Resorts</title>
+<link href=http://code.google.com/apis/maps/documentation/javascript/examples/default.css
+rel="stylesheet" type="text/css"/>
+<style> 
+h2 {
+    text-align: center;
+    border: 1px solid green;
+}
+#map-canvas { height: 70%; width :50%; margin-left:auto; margin-right:auto;}
+</style>
+<script type="text/javascript" async defer
+src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD4aSS0rAKfn_5lzAbYZleBL9wbMkY53aM&callback=initialize">
+</script>
+<script type="text/javascript">
+function initialize() {
+// Set MapOptions properties
+var myOptions = {zoom: 8, center: new google.maps.LatLng(48.52,23.41),
+mapTypeId: google.maps.MapTypeId.ROADMAP}
+// Set up map
+var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+var PylypetsCircle = new google.maps.Circle({
+		strokeColor: '#DC143C',
+		strokeOpacity: 0.5,
+		strokeWeight: 2,
+		fillColor: '#0000ff',
+		fillOpacity: 0.25,
+		map: map,
+		center: {lat: 48.662500000000080, lng: 23.296300000000031},
+		radius: 25000
+	});
+	var ctaLayer = new google.maps.KmlLayer ({
+          url: "http://77.47.192.22:3128/webdocs/wdc02-011/Website/OblastsG.kmz",
+          map: map,
+		  preserveViewport:true
+        });
+//Set arguments for the first ski resort and add the first resort's marker to the map: call setMap();
+createMarker('Bukovel <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/Bukovel.jpg" height="40" width="60"></p>',24.415800000000047,48.353200000000072).setMap(map);
+createMarker('Dragobrat <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/dragobrat.jpg" height="40" width="60"></p>',24.224700000000041,48.243700000000047).setMap(map);
+createMarker('Pylypets <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/pylypets.jpg" height="40" width="60"></p>',23.296300000000031,48.662500000000080).setMap(map);
+createMarker('Podobovets <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/podobovets.jpg" height="40" width="60"></p>',23.288100000000043,48.675200000000075).setMap(map);
+createMarker('Sinyak <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/sinyak.jpg" height="40" width="60"></p>',22.855500000000063,48.578100000000063).setMap(map);
+createMarker('Voevodyno <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/voevodyno.jpg" height="40" width="60"></p>',22.642400000000066,48.661700000000053).setMap(map);
+createMarker('Krasiya <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/krasiya.jpg" height="40" width="60"></p>',22.292200000000037,48.611100000000079).setMap(map);
+createMarker('Vyshka <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/vyshka.jpg" height="40" width="60"></p>',22.672900000000027,48.938700000000040).setMap(map);
+createMarker('Plai <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/plai.jpg" height="40" width="60"></p>',24.904100000000028,47.980900000000076).setMap(map);
+createMarker('Trostyan <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/trostyan.jpg" height="40" width="60"></p>',23.387400000000071,48.856700000000046).setMap(map);
+createMarker('Ilz <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/ilz.jpg" height="40" width="60"></p>',23.526600000000030,48.920300000000054).setMap(map);
+createMarker('Zhar Berkut <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/zhar_berkut.jpg" height="40" width="60"></p>',23.336100000000044,48.857100000000059).setMap(map);
+createMarker('Pohar <p><img src="http://77.47.192.22:3128/webdocs/wdc02-011/Website/images/pohar.jpg" height="40" width="60"></p>',23.253100000000074,48.937700000000063).setMap(map);
+//Set arguments for the second resort and add the second resort 's marker to the map: call setMap();
+}
+function createMarker(resort_name, point_x, point_y) {
+// Notice that Google orders as Y,X (lat, long) rather than X,Y as ArcGIS does.
+// We need to compensate for this by reversing X and Y below.
+ var latlng = new google.maps.LatLng(point_y, point_x); // Coordinates of resorts go in here
+// Create marker without initialization (the hook map: map, is not defined)
+var marker = new google.maps.Marker({position: latlng, title: resort_name});
+google.maps.event.addListener(marker, "click",
+function() {
+var infowindow = new google.maps.InfoWindow({content: resort_name});
+infowindow.open(marker.getMap(), marker);
+}
+);
+return marker; // Returning the marker from the function
+}
+</script>
+</head>
+<body onLoad="initialize();">
+<h2>Українські гірськолижні комплекси з Google Maps API</h2>
+<div id="map-canvas" align="center" style="width:650px; height:650px"></div>
+</body>
+</html>
